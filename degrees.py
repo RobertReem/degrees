@@ -83,10 +83,6 @@ def main():
             movie = movies[path[i + 1][0]]["title"]
             print(f"{i + 1}: {person1} and {person2} starred in {movie}")
 
-class NameMovieIdPair(object):
-    def __init__(self, movie_id, name_id):
-        self.movie_id = movie_id    
-        self.name_id = name_id
 
 def shortest_path(source, target):
     """
@@ -94,32 +90,10 @@ def shortest_path(source, target):
     that connect the source to the target.
 
     If no possible path, returns None.
-    source == person Id for name -- starting point
-    target == person Id for name -- ending point
     """
-    currentActorId = source
-    print('about to get neighbors')
-    setOfActorsRelatedToCurrentActorId = neighbors_for_person(currentActorId) #returns set
-    if(setOfActorsRelatedToCurrentActorId.__contains__(source)):
-        print('The pair is in the above set')
-    else:
-        print('The target is not in the source neighbor set')
-    print(setOfActorsRelatedToCurrentActorId)
-    print('the above set are neighbors')
-    for actor_id in setOfActorsRelatedToCurrentActorId:
-        print(actor_id[0])
-        print(GetNameFromId(actor_id[0]))
 
-
-    returnThisList = [NameMovieIdPair]
-    
-
-
-    #if target.contains(setOfActorsRelatedToCurrentActorId):
-    return target #Change this to return list of strings that connect the source to the target
-
-    #return returnThisList
-    #raise NotImplementedError
+    # TODO
+    raise NotImplementedError
 
 
 def person_id_for_name(name):
