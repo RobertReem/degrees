@@ -91,9 +91,84 @@ def shortest_path(source, target):
 
     If no possible path, returns None.
     """
+    frontier = QueueFrontier()
+    number_explored = 0
+    exploredSet = set()
 
-    # TODO
-    raise NotImplementedError
+    neighbors = neighbors_for_person(source)
+
+    for neighbor in neighbors:
+        #print(neighbor)
+        node = Node(state=(neighbor[0], neighbor[1]), parent=None, action=None)
+        frontier.add(node)
+
+    while True:
+        if frontier.empty():
+            break
+
+        node = frontier.remove()
+        if node not in exploredSet:
+            exploredSet.add(node)
+
+            if node.state[1] == target:
+                solution_list = []
+                for index in node:
+                    solution_list.append(index.parent[0], index.parent[2])
+                    return solution_list
+            else:
+                new_neighbors = neighbors_for_person(node.state[1])
+                for new_neighbor in new_neighbors:
+                    new_node = Node(state=(new_neighbor[0], new_neighbor[1]), parent=(node.state[0], node.state[1]), action=None)
+                    frontier.add(new_node)
+
+    #node = frontier.remove()
+
+    # while True:
+    #     if frontier.empty():
+    #         raise Exception("no solution")
+    #     if node.state == target:
+    #         actions = []
+    #         cells = []
+
+    #         while node.parent is not None:
+    #             cells.append(node.state)
+    #             node = node.parent
+    #         solution = cells.reverse()
+    #         return solution
+    #     exploredSet.add(node.state)
+    #     for movie_id, person_id in neighbors:
+    #         if not frontier.contains_state(person_id) and movie_id not in exploredSet:
+    #             child = Node(state=(movie_id, person_id), parent=node,action=None)
+    #             frontier.add(child)
+
+
+    # for element in neighbors:
+    #     node = Node(element, source, None)
+    #     print(node)
+    #     frontier.add(QueueFrontier, node)
+    #     print(frontier)
+
+    # currentNode = frontier.remove()
+    # #if currentNode.state
+
+    
+
+    # solution = [] # this list will contain a touple like this: [(1, 2), (3, 4)]
+    
+    # first = (1,1)
+    # second = (2,2)
+    # solution.append(first)
+    # solution.append(second)
+
+    # #create for loop that looks at all of the elements in solution. (in reverse I think)
+    # # Create touple of 2 strings. 
+    # # (source in movieId, with actorId), (neighbor in movieId, with actorId)
+
+    # if len(solution) == 0:
+    #     return 'None'
+    # print(solution)
+    # # TODO
+    # raise NotImplementedError
 
 
 def person_id_for_name(name):
